@@ -5,8 +5,5 @@ app.controller('listCtrl', function(listFactory) {
     return listFactory.getCards(list);
   };
 
-  self.createCard = function(list) {
-    listFactory.createCard(list, self.cardDescription);
-    self.cardDescription = null;
-  };
+
 });

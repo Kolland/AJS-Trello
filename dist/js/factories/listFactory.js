@@ -9,15 +9,15 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 1,
-          description: 'Lear ReactJS'
+          title: 'Lear ReactJS'
         },
         {
           id: 2,
-          description: 'Lear Some shit'
+          title: 'Lear Some shit'
         },
         {
           id: 3,
-          description: 'Lear Some shit 2'
+          title: 'Lear Some shit 2'
         }
       ]
     },
@@ -28,15 +28,15 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 4,
-          description: 'Lear ReactJS'
+          title: 'Lear ReactJS'
         },
         {
           id: 5,
-          description: 'Lear Some shit'
+          title: 'Lear Some shit'
         },
         {
           id: 6,
-          description: 'Lear Some shit 2'
+          title: 'Lear Some shit 2'
         }
       ]
     },
@@ -47,15 +47,15 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 7,
-          description: 'Lear ReactJS'
+          title: 'Lear ReactJS'
         },
         {
           id: 8,
-          description: 'Lear Some shit'
+          title: 'Lear Some shit'
         },
         {
           id: 9,
-          description: 'Lear Some shit 2'
+          title: 'Lear Some shit 2'
         }
       ]
     }
@@ -85,14 +85,9 @@ app.factory('listFactory', function() {
     return lists[index].cards;
   };
 
-  service.createCard = function(list, cardDescription) {
-    var index = _.findIndex(lists, { id: list.id });
-    if (cardDescription) {
-      lists[index].cards.push({
-        id: _.uniqueId('card_'),
-        description: cardDescription
-      });
-    }
+  service.createCard = function(list, card) {
+    console.log(list);
+    console.log(card);
   };
 
   service.deleteCard = function(card, listId) {

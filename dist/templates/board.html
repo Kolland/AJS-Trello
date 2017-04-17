@@ -18,7 +18,7 @@
               dnd-moved="cards.splice($index, 1)">
 
           <div>
-            {{card.description}}
+            {{card.title}}
             <div ng-click="listsCtrl.editCard(card)" class="edit-small edit-card hand"></div>
             <div ng-click="cardCtrl.deleteCard(card, list.id)" class="hand">
               <div class="remove-small remove-card"></div>
@@ -33,10 +33,8 @@
         <div class="remove remove-list"></div>
       </a>
       <!-- create new card -->
-      <section class="new-card">
-        <form ng-submit="listCtrl.createCard(list)">
-          <input type="text" ng-model="listCtrl.cardDescription" class="card-input" placeholder="New card" />
-        </form>
+      <section class="new-card" ng-click="listsCtrl.createCard(list)">
+        Add new card
       </section>
     </section>
     <!-- create new list -->
@@ -46,8 +44,8 @@
       </form>
     </section>
   </div>
-  <div class="card-detail">
-    <span>{{listsCtrl.editingCard}}</span>
-    <card-detail card="listsCtrl.editingCard"></card-detail>
+  <!-- card details -->
+  <div class="card-detail" ng-show="listsCtrl.isCardEditing">
+    <card-detail card="listsCtrl.editingCard" is-editing="listsCtrl.isCardEditing"></card-detail>
   </div>
 </section>
