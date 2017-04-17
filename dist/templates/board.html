@@ -1,0 +1,53 @@
+<h1 class="board-title" ng-controller="boardCtrl as boardCtrl">
+  <a href="/">Back to boards</a>
+  {{boardCtrl.board.boardName}}
+</h1>
+
+<section id="lists-container" class="lists-container" ng-controller="listsCtrl as listsCtrl">
+  <div class="row">
+    <section class="list list-inline" ng-repeat="list in listsCtrl.lists" ng-controller="listCtrl as listCtrl" >
+      <h2>{{list.listName}}</h2>
+      <!-- cards list -->
+      {{cards = listCtrl.getCards(list);""}}<!-- The trailing "" stops the Angular expression being evaluated to any text. -->
+      <div dnd-list="cards" style="min-height: 30px">
+        <div  class="card"
+              ng-repeat="card in cards"
+              ng-controller="cardCtrl as cardCtrl"
+              dnd-draggable="card"
+              dnd-effect-allowed="move"
+              dnd-moved="cards.splice($index, 1)">
+
+          <div>
+            {{card.description}}
+            <div ng-click="listsCtrl.editCard(card)" class="edit-small edit-card hand"></div>
+            <div ng-click="cardCtrl.deleteCard(card, list.id)" class="hand">
+              <div class="remove-small remove-card"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- remove list -->
+      <a ng-click="listsCtrl.removeList(list)" class="hand">
+        <div class="remove remove-list"></div>
+      </a>
+      <!-- create new card -->
+      <section class="new-card">
+        <form ng-submit="listCtrl.createCard(list)">
+          <input type="text" ng-model="listCtrl.cardDescription" class="card-input" placeholder="New card" />
+        </form>
+      </section>
+    </section>
+    <!-- create new list -->
+    <section class="list new-list list-inline">
+      <form ng-submit="listsCtrl.addList()">
+        <input type="text" ng-model="listsCtrl.listName" placeholder="New List name"/>
+      </form>
+    </section>
+  </div>
+  <div class="card-detail">
+    <span>{{listsCtrl.editingCard}}</span>
+    <card-detail card="listsCtrl.editingCard"></card-detail>
+  </div>
+</section>

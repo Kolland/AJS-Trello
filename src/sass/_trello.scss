@@ -1,0 +1,124 @@
+.app-name {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  color: $c-white;
+  font-weight: 500;
+  text-indent: .5em;
+}
+
+.list {
+  position: relative;
+  width: 200px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #e3e3e3;
+  vertical-align: top;
+  h1 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  input {
+    margin-bottom: 0;
+  }
+  &.new-list {
+    background-color: #628DA4;
+  }
+}
+
+.list-inline {
+  display: inline-block;
+}
+
+.lists-container {
+  position: relative;
+  padding: 20px;
+}
+
+.remove {
+  width: 15px;
+  height: 15px;
+  background: url('../img/x.svg');
+}
+
+.remove-small {
+  width: 10px;
+  height: 10px;
+  background: url('../img/x_sm.svg');
+}
+
+.remove-list {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 6px;
+  color: $c-main;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-weight: 700;
+}
+
+.remove-card {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.no-display {
+  display: none;
+}
+
+.card {
+  position: relative;
+  margin: 10px 0;
+  padding: 20px;
+  border: 1px solid #b9b9b9;
+  border-radius: 4px;
+  background-color: $c-white;
+  &:hover {
+    border-color: $c-main;
+  }
+}
+
+.edit {
+  width: 15px;
+  height: 15px;
+  background: url('../img/pen_alt_stroke.svg');
+  &:hover {
+    background: url('../img/pen_alt_fill.svg');
+  }
+}
+
+.edit-small {
+  width: 10px;
+  height: 10px;
+  background: url('../img/pen_alt_stroke_sm.svg');
+}
+
+.edit-card {
+  display: block;
+  position: absolute;
+  top: 3px;
+  right: 20px;
+}
+
+.edit_sm:hover {
+  background: url('../img/pen_alt_fill_sm.svg');
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.select-list {
+  margin: 10px 0 0;
+}
+
+.header-link {
+  color: $c-white;
+  vertical-align: middle;
+  &:hover {
+    color: #e3e3e3;
+  }
+}

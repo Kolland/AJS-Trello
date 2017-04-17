@@ -1,0 +1,31 @@
+.board {
+  position: relative;
+  width: 200px;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid $c-grey--dark;
+  border-radius: 4px;
+  background-color: $c-grey;
+  vertical-align: top;
+  &:hover {
+    .board__edit {
+      display: inline-block;
+    }
+  }
+  &__link {
+    display: block;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  &__field {
+    margin-bottom: 0;
+  }
+  &__edit {
+    display: none;
+  }
+  &--new {
+    background-color: $c-main;
+  }
+}
