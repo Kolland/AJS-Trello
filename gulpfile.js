@@ -1,11 +1,6 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 
-// need to nunjucks
-// var nunjucksRender = require('gulp-nunjucks-render');
-// var plumber = require('gulp-plumber');
-// var htmlbeautify = require('gulp-html-beautify');
-
 // need to sass
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -23,10 +18,10 @@ var svgmin = require('gulp-svgmin');
 // 2.minify-js
 // 3.minify-css
 // 4.sass
-// 5.nunjucks
-// 6.svg-o
-// 7.svgstore
-// 8.watch
+// 5.svg-o
+// 6.svgstore
+// 7.watch
+// 7.run server
 
 // browserSync
 gulp.task('browser-sync', function() {
@@ -71,17 +66,6 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream()); // inject css
 });
 
-// nunjucks template + htmlbeautify
-// gulp.task('nunjucks', function() {
-//   return gulp.src('src/pages/**/*.html')
-//     .pipe(plumber())
-//     .pipe(nunjucksRender({
-//       path: ['src/templates/']
-//     }))
-//     .pipe(htmlbeautify({indentSize: 2})) // html beautify
-//     .pipe(gulp.dest('dist'));
-// });
-
 // svg opimization
 gulp.task('svg-o', function() {
   return gulp
@@ -122,4 +106,13 @@ gulp.task('watch', function() {
   // gulp.watch(['src/pages/**/*.html', 'src/templates/**/*.html'], ['nunjucks']);
   gulp.watch(['dist/js/**/*.js']).on('change', browserSync.reload);
   gulp.watch(['dist/**/*.html']).on('change', browserSync.reload);
+});
+
+// run
+gulp.task('run', function() {
+  browserSync.init({
+    server: {
+      baseDir: 'dist'
+    }
+  });
 });

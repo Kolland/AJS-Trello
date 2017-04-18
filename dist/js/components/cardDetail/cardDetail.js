@@ -3,8 +3,19 @@ function CardDetailController($scope) {
 
   self.save = function() {
     self.isEditing = false;
-    console.log(self.isEditing);
-    $scope.$emit('save', self.card);
+    if (!self.card.title) {
+      self.card.title = 'No Card Title';
+    }
+    if (!self.card.id) {
+      $scope.$emit('save', self.card);
+    } else {
+      $scope.$emit('update', self.card);
+    }
+    self.card = {};
+  };
+
+  self.close = function() {
+    self.isEditing = false;
     self.card = {};
   };
 
@@ -12,7 +23,25 @@ function CardDetailController($scope) {
     if (self.newComment) {
       self.card.comments.push(self.newComment);
       self.newComment = null;
-    };
+    }
+  };
+
+  self.addChecklistItem = function() {
+    if (self.newChecklistItem) {
+      console.log(self.newChecklistItem);
+      self.card.checklist.push({
+        label: self.newChecklistItem,
+        status: false
+      });
+      self.newChecklistItem = null;
+    }
+  };
+
+  self.addMember = function() {
+    if (self.newMember) {
+      self.card.members.push(self.newMember);
+      self.newMember = null;
+    }
   };
 }
 

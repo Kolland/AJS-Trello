@@ -17,6 +17,8 @@ angular.module('app').controller('listsCtrl', function($scope, listFactory, $rou
   // card creating/editing
   self.isCardEditing = false;
   self.editingCard = {};
+  self.cardList = {};
+  self.cardListId = '';
   self.createCard = function(list) {
     self.isCardEditing = true;
     self.editingCard = {
@@ -30,18 +32,29 @@ angular.module('app').controller('listsCtrl', function($scope, listFactory, $rou
         spent: '',
         remaining: ''
       },
+      checklist: [],
       file: ''
     };
+    self.cardList = list;
   };
   self.editingCard = null;
-  self.editCard = function(card) {
-    self.isEditing = true;
+  self.editCard = function(card, listId) {
+    self.isCardEditing = true;
+    self.cardListId = listId;
     self.editingCard = angular.copy(card);
-    console.log(self.editingCard);
   };
 
   $scope.$on('save', function(event, data) {
-    console.log(data); // 'Some data'
+    listFactory.createCard(self.cardList, self.editingCard);
+    self.editingCard = {};
+    self.cardList = {};
   });
+  $scope.$on('update', function(event, data) {
+    listFactory.updateCard(self.editingCard, self.cardListId);
+    self.editingCard = {};
+    self.cardListId = '';
+  });
+
+
 
 });

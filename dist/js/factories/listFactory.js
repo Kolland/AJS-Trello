@@ -9,15 +9,48 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 1,
-          title: 'Lear ReactJS'
+          title: 'Title 1',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 2,
-          title: 'Lear Some shit'
+          title: 'Title 2',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 3,
-          title: 'Lear Some shit 2'
+          title: 'Title 3',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         }
       ]
     },
@@ -28,15 +61,48 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 4,
-          title: 'Lear ReactJS'
+          title: 'Title 1',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 5,
-          title: 'Lear Some shit'
+          title: 'Title 2',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 6,
-          title: 'Lear Some shit 2'
+          title: 'Title 3',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         }
       ]
     },
@@ -47,15 +113,48 @@ app.factory('listFactory', function() {
       cards: [
         {
           id: 7,
-          title: 'Lear ReactJS'
+          title: 'Title 1',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 8,
-          title: 'Lear Some shit'
+          title: 'Title 2',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         },
         {
           id: 9,
-          title: 'Lear Some shit 2'
+          title: 'Title 3',
+          description: '',
+          comments: [],
+          members: [],
+          dueDate: '',
+          time: {
+            estimated: '',
+            spent: '',
+            remaining: ''
+          },
+          checklist: [],
+          file: ''
         }
       ]
     }
@@ -86,8 +185,15 @@ app.factory('listFactory', function() {
   };
 
   service.createCard = function(list, card) {
-    console.log(list);
-    console.log(card);
+    var index = _.findIndex(lists, { id: list.id });
+    card.id = _.uniqueId('card_');
+    lists[index].cards.push(card);
+  };
+
+  service.updateCard = function(card, listId) {
+    var index = _.findIndex(lists, { id: listId });
+    var cardIndex = _.findIndex(lists[index].cards, { id: card.id });
+    lists[index].cards[cardIndex] = card;
   };
 
   service.deleteCard = function(card, listId) {

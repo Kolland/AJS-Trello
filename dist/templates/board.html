@@ -1,17 +1,23 @@
-<h1 class="board-title" ng-controller="boardCtrl as boardCtrl">
-  <a href="/">Back to boards</a>
-  {{boardCtrl.board.boardName}}
-</h1>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <h1 class="board-title" ng-controller="boardCtrl as boardCtrl">
+      {{boardCtrl.board.boardName}}
+    </h1>
+  </div>
+  <div class="top-bar-right">
+    <a class="button small" href="/">Back to boards</a>
+  </div>
+</div>
 
 <section id="lists-container" class="lists-container" ng-controller="listsCtrl as listsCtrl">
   <div class="row">
-    <section class="list list-inline" ng-repeat="list in listsCtrl.lists" ng-controller="listCtrl as listCtrl" >
+    <section class="list list-inline" ng-repeat="list in listsCtrl.lists track by $index" ng-controller="listCtrl as listCtrl" >
       <h2>{{list.listName}}</h2>
       <!-- cards list -->
       {{cards = listCtrl.getCards(list);""}}<!-- The trailing "" stops the Angular expression being evaluated to any text. -->
       <div dnd-list="cards" style="min-height: 30px">
         <div  class="card"
-              ng-repeat="card in cards"
+              ng-repeat="card in cards track by $index"
               ng-controller="cardCtrl as cardCtrl"
               dnd-draggable="card"
               dnd-effect-allowed="move"
@@ -19,7 +25,7 @@
 
           <div>
             {{card.title}}
-            <div ng-click="listsCtrl.editCard(card)" class="edit-small edit-card hand"></div>
+            <div ng-click="listsCtrl.editCard(card, list.id)" class="edit-small edit-card hand"></div>
             <div ng-click="cardCtrl.deleteCard(card, list.id)" class="hand">
               <div class="remove-small remove-card"></div>
             </div>
@@ -33,9 +39,9 @@
         <div class="remove remove-list"></div>
       </a>
       <!-- create new card -->
-      <section class="new-card" ng-click="listsCtrl.createCard(list)">
+      <button class="new-card button" ng-click="listsCtrl.createCard(list)">
         Add new card
-      </section>
+      </button>
     </section>
     <!-- create new list -->
     <section class="list new-list list-inline">
@@ -45,7 +51,9 @@
     </section>
   </div>
   <!-- card details -->
-  <div class="card-detail" ng-show="listsCtrl.isCardEditing">
-    <card-detail card="listsCtrl.editingCard" is-editing="listsCtrl.isCardEditing"></card-detail>
+  <div class="card-detail-overlay" ng-show="listsCtrl.isCardEditing">
+    <div class="card-detail">
+      <card-detail card="listsCtrl.editingCard" is-editing="listsCtrl.isCardEditing"></card-detail>
+    </div>
   </div>
 </section>

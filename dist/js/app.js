@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'dndLists']);
+var app = angular.module('app', ['ngRoute', 'dndLists', 'moment-picker']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider

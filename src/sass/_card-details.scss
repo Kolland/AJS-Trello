@@ -1,0 +1,34 @@
+.card-detail-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(#000, .85);
+}
+
+.card-detail {
+  position: absolute;
+  left: 50%;
+  max-width: 480px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  transform: translateX(-50%);
+  color: #fff;
+  overflow: auto;
+  label {
+    color: inherit;
+    text-align: right;
+  }
+  textarea {
+    resize: vertical;
+    width: 100%;
+  }
+  input[type='text'],
+  textarea {
+    background-color: rgba(#000, .2);
+    color: #fff;
+    border-color: rgba(#fff, .2);
+  }
+}

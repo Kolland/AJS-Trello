@@ -1,60 +1,114 @@
-<label for="card-title">
-  Card Title
-  <input type="text" id="card-title" ng-model="$ctrl.card.title"/>
-</label>
-<label for="card-description">
-  Card Description
-  <input type="text" id="card-description" ng-model="$ctrl.card.description"/>
-</label>
+<!-- Card Title -->
+<div class="row">
+  <div class="large-12 columns">
+    <label for="card-title">
+      Card Title
+      <input type="text" id="card-title" ng-model="$ctrl.card.title"/>
+    </label>
+  </div>
+</div>
+<!-- Card Description -->
+<div class="row">
+  <div class="large-12 columns">
+    <label for="card-description">
+      Card Description
+      <textarea id="card-description" ng-model="$ctrl.card.description"></textarea>
+    </label>
+  </div>
+</div>
 <!-- comments -->
-<p>Comments</p>
-<div class="" ng-repeat="comment in $ctrl.card.comments track by $index">
-  <span>{{comment}}</span>
+<div class="row">
+  <div class="large-12 columns">
+    <h5>Comments</h5>
+    <span ng-show="$ctrl.card.comments.length === 0">No comments</span>
+    <div class="" ng-repeat="comment in $ctrl.card.comments track by $index">
+      <span>{{comment}}</span>
+    </div>
+    <form class="" ng-submit="$ctrl.addComment()">
+      <label for="new-comment">
+        Add new comment
+        <input type="text" id="new-comment" ng-model="$ctrl.newComment"/>
+      </label>
+      <input class="button small" type="submit" value="Add Comment"/>
+    </form>
+  </div>
 </div>
-<form class="" ng-submit="$ctrl.addComment()">
-  <label for="new-comment">
-    Add new comment
-    <input type="text" id="new-comment" ng-model="$ctrl.newComment"/>
-  </label>
-  <input type="submit" value="Add Comment"/>
-</form>
-
 <!-- members -->
-<p>Members</p>
-<div class="" ng-repeat="member in $ctrl.card.members track by $index">
-  <span>{{member}}</span>
+<div class="row">
+  <div class="large-12 columns">
+    <h5>Members</h5>
+    <span ng-show="$ctrl.card.members.length === 0">No members</span>
+    <div class="" ng-repeat="member in $ctrl.card.members track by $index">
+      <span>{{member}}</span>
+    </div>
+    <form class="" ng-submit="$ctrl.addMember()">
+      <label for="new-member">
+        Add new member
+        <input type="text" id="new-member" ng-model="$ctrl.newMember"/>
+      </label>
+      <input class="button small" type="submit" value="Add Member"/>
+    </form>
+  </div>
 </div>
-<form class="" ng-submit="$ctrl.addMember()">
-  <label for="new-member">
-    Add new member
-    <input type="text" id="new-member" ng-model="$ctrl.newMember"/>
-  </label>
-  <input type="submit" value="Add Member"/>
-</form>
-
-<label for="due-date">
-  <input type="text" id="due-date" ng-model="$ctrl.card.dueDate"/>
-</label>
-
+<!-- Checklist -->
+<div class="row">
+  <div class="large-12 columns">
+    <h5>Checklist</h5>
+    <span ng-if="$ctrl.card.checklist.length === 0">No items</span>
+    <div class="" ng-repeat="checkbox in $ctrl.card.checklist track by $index">
+      <label for="checkbox-{{$index}}">
+        {{checkbox.label}}
+        <input type="checkbox" id="checkbox-{{$index}}" ng-model="checkbox.status"/>
+      </label>
+    </div>
+    <form ng-submit="$ctrl.addChecklistItem()">
+      <input type="text" ng-model="$ctrl.newChecklistItem" placeholder="Add new checklist item"/>
+    </form>
+  </div>
+</div>
+<!-- due date -->
+<div class="row">
+  <div class="large-12 columns">
+    <label for="due-date">
+      Due Date
+      <input type="text" id="due-date" moment-picker="$ctrl.card.dueDate" format="YYYY-MM-DD" ng-model="$ctrl.card.dueDate"/>
+    </label>
+  </div>
+</div>
 <!-- time tracking -->
-<label for="estimated-time">
-  Estimated time
-  <input type="text" id="estimated-time" ng-model="$ctrl.card.time.estimated"/>
-</label>
-<label for="spent-time">
-  Spent time
-  <input type="text" id="spent-time" ng-model="$ctrl.card.time.spent"/>
-</label>
-<label for="remaining-time">
-  Remaining time
-  <input type="text" id="remaining-time" ng-model="$ctrl.card.time.remaining"/>
-</label>
+<div class="row">
+  <div class="large-4 columns">
+    <label for="estimated-time">
+      Estimated time
+      <input type="text" id="estimated-time" ng-model="$ctrl.card.time.estimated"/>
+    </label>
+  </div>
+  <div class="large-4 columns">
+    <label for="spent-time">
+      Spent time
+      <input type="text" id="spent-time" ng-model="$ctrl.card.time.spent"/>
+    </label>
+  </div>
+  <div class="large-4 columns">
+    <label for="remaining-time">
+      Remaining time
+      <input type="text" id="remaining-time" ng-model="$ctrl.card.time.remaining"/>
+    </label>
+  </div>
+</div>
+<!-- Attachments -->
+<div class="row">
+  <div class="large-12 columns">
+    <label for="attachments">
+      Attachments
+      <input type="file" id="attachments" ng-model="$ctrl.card.file"/>
+    </label>
+  </div>
+</div>
 
-<label for="attachments">
-  Attachments
-  <input type="file" id="attachments" ng-model="$ctrl.card.file"/>
-</label>
-
-
-<button type="button" name="button" ng-click="$ctrl.save()">save</button>
-<button type="button" name="button">close</button>
+<div class="row">
+  <div class="large-12 columns">
+    <button class="button success" type="button" name="button" ng-click="$ctrl.save()">SAVE</button>
+    <button class="button alert" type="button" name="button" ng-click="$ctrl.close()">CLOSE</button>
+  </div>
+</div>

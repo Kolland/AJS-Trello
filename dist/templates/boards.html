@@ -1,10 +1,10 @@
 <section id="lists-container" class="lists-container" ng-controller="boardsCtrl as boardsCtrl">
   <div class="row">
     <section class="board" ng-repeat="board in boardsCtrl.boards" ng-controller="boardCtrl as boardCtrl">
-      <h1 class="board__title" ng-if="!boardCtrl.isEditing">
+      <h2 class="board__title" ng-if="!boardCtrl.isEditing">
         {{board.boardName}}
         <span class="edit board__edit" ng-click="boardCtrl.edit(board.boardName)"></span>
-      </h1>
+      </h2>
       <form ng-if="boardCtrl.isEditing" ng-submit="boardCtrl.endEdit(board)">
         <input class="board__field" type="text" ng-model="boardCtrl.newBoardName" placeholder="Add board name"/>
       </form>
@@ -12,7 +12,7 @@
       <button ng-click="boardCtrl.removeBoard(board)" class="hand">
         <div class="remove remove-list"></div>
       </button>
-      <a class="board__link" href="#!/boards/{{board.id}}">View Cards</a>
+      <a class="board__link button" href="#!/boards/{{board.id}}">View Cards</a>
 
     </section>
 
