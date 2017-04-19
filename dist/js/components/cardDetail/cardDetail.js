@@ -28,7 +28,6 @@ function CardDetailController($scope) {
 
   self.addChecklistItem = function() {
     if (self.newChecklistItem) {
-      console.log(self.newChecklistItem);
       self.card.checklist.push({
         label: self.newChecklistItem,
         status: false

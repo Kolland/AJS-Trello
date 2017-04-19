@@ -20,6 +20,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -35,6 +36,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -50,6 +52,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         }
       ]
@@ -72,6 +75,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -87,6 +91,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -102,6 +107,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         }
       ]
@@ -124,6 +130,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -139,6 +146,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         },
         {
@@ -154,6 +162,7 @@ app.factory('listFactory', function() {
             remaining: ''
           },
           checklist: [],
+          progress: 0,
           file: ''
         }
       ]
@@ -188,17 +197,23 @@ app.factory('listFactory', function() {
     var index = _.findIndex(lists, { id: list.id });
     card.id = _.uniqueId('card_');
     lists[index].cards.push(card);
+    service.progressUpdate(card);
   };
 
   service.updateCard = function(card, listId) {
     var index = _.findIndex(lists, { id: listId });
     var cardIndex = _.findIndex(lists[index].cards, { id: card.id });
     lists[index].cards[cardIndex] = card;
+    service.progressUpdate(lists[index].cards[cardIndex]);
   };
 
   service.deleteCard = function(card, listId) {
     var index = _.findIndex(lists, { id: listId });
     return _.pull(lists[index].cards, card);
+  };
+
+  service.progressUpdate = function(card) {
+    card.progress = _.filter(card.checklist, {status: true}).length;
   };
 
   return service;
