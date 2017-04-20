@@ -10,8 +10,8 @@
 .card-detail {
   position: absolute;
   left: 50%;
-  max-width: 480px;
   width: 100%;
+  max-width: 480px;
   height: 100%;
   padding: 10px 0;
   transform: translateX(-50%);
@@ -22,13 +22,13 @@
     text-align: right;
   }
   textarea {
-    resize: vertical;
     width: 100%;
+    resize: vertical;
   }
   input[type='text'],
   textarea {
+    border-color: rgba(#fff, .2);
     background-color: rgba(#000, .2);
     color: #fff;
-    border-color: rgba(#fff, .2);
   }
 }

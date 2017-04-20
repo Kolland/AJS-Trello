@@ -90,10 +90,15 @@
     </label>
   </div>
   <div class="large-4 columns">
-    <label for="remaining-time">
+    <label>
       Remaining time
-      <input type="text" id="remaining-time" ng-model="$ctrl.card.time.remaining"/>
+      <span>{{$ctrl.card.time.remaining | duration:"mm'm'hh'h'dd'd'"}}</span>
     </label>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <span>Time format: 1m2h3d</span>
   </div>
 </div>
 <!-- Attachments -->

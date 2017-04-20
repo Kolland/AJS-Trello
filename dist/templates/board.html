@@ -13,6 +13,8 @@
   <div class="row">
     <section class="list list-inline" ng-repeat="list in listsCtrl.lists track by $index" ng-controller="listCtrl as listCtrl" >
       <h4>{{list.listName}}</h4>
+      {{listCtrl.setList(list)}}
+      <span>ET: {{listCtrl.estimatedSum | duration:"mm'm'hh'h'dd'd'"}} <br> ST: {{listCtrl.spentSum | duration:"mm'm'hh'h'dd'd'"}} <br> RT: {{listCtrl.remainingSum | duration:"mm'm'hh'h'dd'd'"}}</span>
       <p>Cards amount: {{list.cards.length}}</p>
       <!-- cards list -->
       {{cards = listCtrl.getCards(list);""}}<!-- The trailing "" stops the Angular expression being evaluated to any text. -->
@@ -22,7 +24,8 @@
               ng-controller="cardCtrl as cardCtrl"
               dnd-draggable="card"
               dnd-effect-allowed="move"
-              dnd-moved="cards.splice($index, 1)">
+              dnd-moved="cards.splice($index, 1)"
+              dnd-dragend="listsCtrl.dragEndCallback()">
 
           <div>
             <h5>{{card.title}}</h5>
